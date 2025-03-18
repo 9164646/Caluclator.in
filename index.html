@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Multiple Calculators - RGB Theme</title>
+    <title>Multiple Calculators - Blue Theme</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background: rgb(230, 240, 255);
+            background: #f4f6f9;
             color: #333;
             margin: 0;
             padding: 20px;
         }
 
-        /* Container */
         .container {
             max-width: 500px;
             margin: 40px auto;
             background: #ffffff;
-            border: 3px solid rgb(0, 102, 204);
+            border: 2px solid #007bff;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             animation: fadeIn 0.8s ease;
         }
 
@@ -37,10 +37,10 @@
             padding: 15px;
             border-radius: 15px;
             margin-bottom: 20px;
-            border: 3px solid rgb(0, 102, 204);
-            background: linear-gradient(90deg, rgb(0, 102, 204), rgb(0, 153, 255));
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+            border: 2px solid #007bff;
+            color: #007bff;
+            font-weight: 600;
+            background: #e9f2ff;
         }
 
         h1 {
@@ -50,89 +50,56 @@
 
         /* Navigation Tabs */
         .nav-pills .nav-link {
-            color: #fff;
-            background: rgb(0, 102, 204);
-            border: 1px solid rgb(0, 77, 153);
+            color: #007bff;
+            border: 2px solid #007bff;
+            background: #ffffff;
             margin: 5px;
             border-radius: 30px;
             transition: 0.3s;
         }
 
         .nav-pills .nav-link.active {
-            background: rgb(0, 153, 255);
+            background: #007bff;
             color: #fff;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Input and Button Glow */
+        /* Inputs */
         .form-control {
-            border: 2px solid rgb(0, 102, 204);
+            border: 2px solid #007bff;
             transition: box-shadow 0.3s;
         }
 
         .form-control:focus {
-            box-shadow: 0 0 15px rgb(0, 153, 255);
-            border-color: rgb(0, 153, 255);
-        }
-
-        /* Calendar Input */
-        #dob {
-            appearance: none;
-            background: #ffffff;
-            padding: 10px;
-            border: 2px solid rgb(0, 102, 204);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        #dob:focus {
-            border-color: rgb(0, 153, 255);
-            box-shadow: 0 0 10px rgb(0, 153, 255);
-            outline: none;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            border-color: #007bff;
         }
 
         /* Buttons */
         .btn-calculate {
-            background: linear-gradient(90deg, rgb(0, 102, 204), rgb(0, 153, 255));
+            background: #007bff;
             color: white;
             border: none;
-            border-radius: 30px;
+            border-radius: 5px;
             padding: 10px;
             transition: background 0.3s, transform 0.2s;
             font-weight: 600;
         }
 
         .btn-calculate:hover {
-            background: rgb(0, 77, 153);
+            background: #0056b3;
             transform: scale(1.05);
         }
 
         /* Results */
         .result {
-            background: rgb(230, 240, 255);
+            background: #e9f2ff;
             padding: 15px;
-            border: 2px solid rgb(0, 102, 204);
+            border: 2px solid #007bff;
             border-radius: 10px;
             margin-top: 15px;
             text-align: center;
             font-size: 1.1rem;
-            color: rgb(0, 77, 153);
-            animation: slideIn 0.5s ease;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: #0056b3;
         }
     </style>
 </head>
@@ -147,13 +114,17 @@
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#ibm">IBM</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#emi">EMI</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#monthlyInterest">Monthly Interest</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
     </ul>
 
     <!-- Tab Content -->
     <div class="tab-content pt-4">
         <!-- Age Calculator -->
         <div id="age" class="tab-pane fade show active">
-            <h2 class="text-center">Age Calculator</h2>
+            <h2 class="text-center text-primary">Age Calculator</h2>
             <input type="date" id="dob" class="form-control mb-3">
             <button class="btn btn-calculate w-100" onclick="calculateAge()">Calculate Age</button>
             <div id="ageResult" class="result mt-3"></div>
@@ -161,11 +132,21 @@
 
         <!-- BMI Calculator -->
         <div id="bmi" class="tab-pane fade">
-            <h2 class="text-center">BMI Calculator</h2>
+            <h2 class="text-center text-primary">BMI Calculator</h2>
             <input type="number" id="weight" class="form-control mb-2" placeholder="Weight (kg)">
             <input type="number" id="height" class="form-control mb-3" placeholder="Height (cm)">
             <button class="btn btn-calculate w-100" onclick="calculateBMI()">Calculate BMI</button>
             <div id="bmiResult" class="result mt-3"></div>
+        </div>
+
+        <!-- Interest Calculator -->
+        <div id="interest" class="tab-pane fade">
+            <h2 class="text-center text-primary">Interest Calculator</h2>
+            <input type="number" id="principal" class="form-control mb-2" placeholder="Principal">
+            <input type="number" id="rate" class="form-control mb-2" placeholder="Rate (%)">
+            <input type="number" id="time" class="form-control mb-3" placeholder="Time (years)">
+            <button class="btn btn-calculate w-100" onclick="calculateInterest()">Calculate Interest</button>
+            <div id="interestResult" class="result mt-3"></div>
         </div>
     </div>
 </div>
@@ -175,23 +156,12 @@
     function calculateAge() {
         const dob = new Date(document.getElementById("dob").value);
         const today = new Date();
-        
         let years = today.getFullYear() - dob.getFullYear();
         let months = today.getMonth() - dob.getMonth();
         let days = today.getDate() - dob.getDate();
-        
-        if (days < 0) {
-            months--;
-            days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-        }
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-        
-        document.getElementById("ageResult").innerHTML = `
-            <strong>${years}</strong> Years, <strong>${months}</strong> Months, <strong>${days}</strong> Days Old.
-        `;
+        if (months < 0) { years--; months += 12; }
+        if (days < 0) { months--; days += 30; }
+        document.getElementById("ageResult").innerText = `${years} Years, ${months} Months, ${days} Days Old`;
     }
 
     // BMI Calculator
@@ -200,6 +170,15 @@
         const height = parseFloat(document.getElementById("height").value) / 100;
         const bmi = (weight / (height * height)).toFixed(2);
         document.getElementById("bmiResult").innerText = `Your BMI: ${bmi}`;
+    }
+
+    // Interest Calculator
+    function calculateInterest() {
+        const principal = parseFloat(document.getElementById("principal").value);
+        const rate = parseFloat(document.getElementById("rate").value) / 100;
+        const time = parseFloat(document.getElementById("time").value);
+        const interest = (principal * rate * time).toFixed(2);
+        document.getElementById("interestResult").innerText = `Interest: $${interest}`;
     }
 </script>
 

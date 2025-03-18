@@ -125,64 +125,248 @@
 
     <div class="tab-content pt-4">
         <!-- Age Calculator -->
-        <div id="age" class="tab-pane fade show active">
-            <h2 class="text-center text-primary">Age Calculator</h2>
-            <input type="date" id="dob" class="form-control mb-3">
-            <button class="btn btn-calculate w-100" onclick="calculateAge()">Calculate Age</button>
-            <div id="ageResult" class="result mt-3"></div>
-        </div>
-
-        <!-- BMI Calculator -->
-        <div id="bmi" class="tab-pane fade">
-            <h2 class="text-center text-primary">BMI Calculator</h2>
-            <input type="number" id="weight" class="form-control mb-2" placeholder="Weight (kg)">
-            <input type="number" id="height" class="form-control mb-3" placeholder="Height (cm)">
-            <button class="btn btn-calculate w-100" onclick="calculateBMI()">Calculate BMI</button>
-            <div id="bmiResult" class="result mt-3"></div>
-        </div>
-
-        <!-- Interest Calculator -->
-        <div id="interest" class="tab-pane fade">
-            <h2 class="text-center text-primary">Interest Calculator</h2>
-            <input type="number" id="principal" class="form-control mb-2" placeholder="Principal">
-            <input type="number" id="rate" class="form-control mb-2" placeholder="Rate (%)">
-            <input type="number" id="time" class="form-control mb-3" placeholder="Time (years)">
-            <button class="btn btn-calculate w-100" onclick="calculateInterest()">Calculate Interest</button>
-            <div id="interestResult" class="result mt-3"></div>
-        </div>
+    <div class="section" id=age>
+    <h2>Age Calculator</h2>
+    <div class="input-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob">
     </div>
+    <button class="calc-btn" onclick="calculateAge()">Calculate Age</button>
+    <div class="result" id="ageResult"></div>
 </div>
 
-<!-- Footer -->
+      <!-- Monthly Intrest Calculator -->
+    <div class="section" id=MIC>   
+    <h2>Monthly Interest Calculator</h2>
+    
+    <div class="input-group">
+        <label for="principal">Principal Amount (₹):</label>
+        <input type="number" id="principal" placeholder="Enter Principal Amount">
+    </div>
+    
+    <div class="input-group">
+        <label for="rate">Monthly Interest Rate :</label>
+        <input type="number" id="rate" placeholder="Enter Interest Rate">
+    </div>
+    
+    <div class="input-group">
+        <label for="fromDate">From Date:</label>
+        <input type="date" id="fromDate">
+    </div>
+
+    <div class="input-group">
+        <label for="toDate">To Date:</label>
+        <input type="date" id="toDate">
+    </div>
+      <button onclick="calculateMonthlyInterest()">Calculate</button>
+    
+    <div class="result" id="result"></div>
+</div>
+      
+
+
+
+
+    <!-- BMI Calculator -->
+    <div class="section" id="bmi">
+        <h2>BMI Calculator</h2>
+        <div class="input-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight">
+        </div>
+        <div class="input-group">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height">
+        </div>
+        <button class="calc-btn" onclick="calculateBMI()">Calculate BMI</button>
+        <div class="result" id="bmiResult"></div>
+    </div>
+
+    <!-- Interest Calculator -->
+    <div class="section" id="interest">
+       
+    <h2>Interest Calculator</h2>
+    <div class="input-group">
+        <label for="principal">Principal Amount (₹):</label>
+        <input type="number" id="principal" placeholder="Enter Principal Amount">
+    </div>
+
+    <div class="input-group">
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="number" id="rate" placeholder="Enter Interest Rate">
+    </div>
+
+    <div class="input-group">
+        <label>Time Period:</label>
+        <input type="number" id="years" placeholder="Years">
+        <input type="number" id="months" placeholder="Months">
+        <input type="number" id="days" placeholder="Days">
+    </div>
+
+    <button class="calc-btn" onclick="calculateInterest()">Calculate Interest</button>
+    <div class="result" id="interestResult"></div>
+</div>
+
+    <!-- EMI Calculator -->
+    <div class="section" id="emi">
+          <h2>EMI Calculator</h2>
+
+    <div class="input-group">
+        <label for="loanAmount">Loan Amount (₹):</label>
+        <input type="number" id="loanAmount" placeholder="Enter Loan Amount">
+    </div>
+
+    <div class="input-group">
+        <label for="loanRate">Rate of Interest (% per annum):</label>
+        <input type="number" id="loanRate" placeholder="Enter Interest Rate">
+    </div>
+
+    <div class="input-group">
+        <label for="loanTenure">Tenure:</label>
+        <input type="number" id="loanTenure" placeholder="Enter Tenure (Months)">
+    </div>
+
+    <button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
+    <div class="result" id="emiResult"></div>
+    </div>
+   
+</div>
+    <!-- Footer -->
 <div class="footer">
     <p>© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</p>
 </div>
 
 <script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
     function calculateAge() {
         const dob = new Date(document.getElementById('dob').value);
         const today = new Date();
-        let age = today.getFullYear() - dob.getFullYear();
-        const m = today.getMonth() - dob.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-        document.getElementById('ageResult').textContent = `Your age is: ${age} years`;
+        
+        if (isNaN(dob)) {
+            document.getElementById('ageResult').innerText = "Please enter a valid date.";
+            return;
+        }
+
+        let years = today.getFullYear() - dob.getFullYear();
+        let months = today.getMonth() - dob.getMonth();
+        let days = today.getDate() - dob.getDate();
+        
+        // Adjust for negative months
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+        
+        // Adjust for negative days
+        if (days < 0) {
+            months--;
+            const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            days += lastMonth;
+        }
+        
+        document.getElementById('ageResult').innerText = `${years} Years, ${months} Months, ${days} Days`;
     }
+    function calculateMonthlyInterest() {
+    const principal = parseFloat(document.getElementById('principal').value);
+    const rate = parseFloat(document.getElementById('rate').value);
+    const fromDate = new Date(document.getElementById('fromDate').value);
+    const toDate = new Date(document.getElementById('toDate').value);
+    
+    if (isNaN(principal) || isNaN(rate) || !fromDate || !toDate || principal <= 0 || rate <= 0) {
+        document.getElementById('result').innerHTML = "Please enter valid values.";
+        return;
+    }
+    
+    if (fromDate > toDate) {
+        document.getElementById('result').innerHTML = "From Date should be earlier than To Date.";
+        return;
+    }
+    
+    // Calculate months and days
+    let months = (toDate.getFullYear() - fromDate.getFullYear()) * 12 + (toDate.getMonth() - fromDate.getMonth());
+    let days = toDate.getDate() - fromDate.getDate();
+    
+    if (days < 0) {
+        months--;
+        const lastMonthDate = new Date(toDate.getFullYear(), toDate.getMonth(), 0);
+        days += lastMonthDate.getDate();
+    }
+// Calculate interest: Full months + partial month interest (days/30)
+    const monthlyInterest = principal * (rate / 100) * months + (principal * (rate / 100) * (days / 30));
+    const totalAmount = principal + monthlyInterest;
+
+    // Display result
+    document.getElementById('result').innerHTML = `
+        Duration: ${months} months, ${days} days<br>
+        Interest: ₹${monthlyInterest.toFixed(2)}<br>
+        Total Amount: ₹${totalAmount.toFixed(2)}
+    `;
+}
+
+
 
     function calculateBMI() {
         const weight = parseFloat(document.getElementById('weight').value);
         const height = parseFloat(document.getElementById('height').value) / 100;
-        if (!weight || !height) return alert('Please enter valid values');
         const bmi = (weight / (height * height)).toFixed(2);
-        document.getElementById('bmiResult').textContent = `Your BMI is: ${bmi}`;
+        document.getElementById('bmiResult').innerText = 'BMI: ' + bmi;
     }
 
     function calculateInterest() {
         const principal = parseFloat(document.getElementById('principal').value);
         const rate = parseFloat(document.getElementById('rate').value);
-        const time = parseFloat(document.getElementById('time').value);
-        if (!principal || !rate || !time) return alert('Please enter valid values');
-        const interest = (principal * rate * time / 100).toFixed(2);
-        document.getElementById('interestResult').textContent = `Total Interest: $${interest}`;
+        const years = parseInt(document.getElementById('years').value) || 0;
+        const months = parseInt(document.getElementById('months').value) || 0;
+        const days = parseInt(document.getElementById('days').value) || 0;
+
+        if (isNaN(principal) || isNaN(rate) || principal <= 0 || rate <= 0) {
+            document.getElementById('interestResult').innerText = "Please enter valid principal and rate.";
+            return;
+        }
+
+        // Convert time into years, considering months and days
+        const totalTimeInYears = years + (months / 12) + (days / 365);
+
+        // Calculate simple interest
+        const interest = (principal * rate * totalTimeInYears) / 100;
+        const totalAmount = principal + interest;
+
+        document.getElementById('interestResult').innerHTML = `
+            Principal: ₹${principal.toFixed(2)}<br>
+            Interest: ₹${interest.toFixed(2)}<br>
+            Total Amount: ₹${totalAmount.toFixed(2)}
+        `;
+    }
+
+    function calculateEMI() {
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const loanRate = parseFloat(document.getElementById('loanRate').value);
+        const loanTenure = parseInt(document.getElementById('loanTenure').value);
+
+        if (isNaN(loanAmount) || isNaN(loanRate) || isNaN(loanTenure) || loanAmount <= 0 || loanRate <= 0 || loanTenure <= 0) {
+            document.getElementById('emiResult').innerText = "Please enter valid values.";
+            return;
+        }
+
+        // Monthly Interest Rate
+        const monthlyRate = loanRate / 12 / 100;
+
+        // EMI Calculation
+        const emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTenure)) / (Math.pow(1 + monthlyRate, loanTenure) - 1);
+        const totalRepayment = emi * loanTenure;
+        const totalInterest = totalRepayment - loanAmount;
+
+        // Display Results
+        document.getElementById('emiResult').innerHTML = `
+            Monthly EMI: ₹${emi.toFixed(2)}<br>
+            Total Interest: ₹${totalInterest.toFixed(2)}<br>
+            Total Payment: ₹${totalRepayment.toFixed(2)}
+        `;
     }
 </script>
 

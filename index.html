@@ -9,17 +9,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background: #f0f4f8;
+            margin: 0;
             padding: 20px;
         }
 
         .container {
-            max-width: 600px;
-            background: #fff;
+            max-width: 500px;
+            margin: 40px auto;
+            background: #ffffff;
             border: 1px solid #007bff;
             border-radius: 15px;
             padding: 30px;
@@ -29,7 +31,7 @@
         .header {
             text-align: center;
             padding: 15px;
-            color: #fff;
+            color: #ffffff;
             background: #007bff;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -40,7 +42,7 @@
         .nav-pills .nav-link {
             color: #007bff;
             border: 2px solid #007bff;
-            background: #fff;
+            background: #ffffff;
             margin: 5px;
             border-radius: 30px;
             transition: 0.3s;
@@ -66,16 +68,17 @@
             transform: scale(1.05);
         }
 
-        input[type="number"], input[type="date"] {
+        input {
+            width: 100%;
             border: 2px solid #007bff;
             border-radius: 5px;
             padding: 8px 10px;
-            width: 100%;
             outline: none;
             transition: border-color 0.3s;
+            margin-bottom: 10px;
         }
 
-        input[type="number"]:focus, input[type="date"]:focus {
+        input:focus {
             border-color: #0056b3;
         }
 
@@ -90,65 +93,87 @@
             color: #0056b3;
             font-weight: 600;
         }
+
+        .footer {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">Multiple Calculators</div>
 
-        <ul class="nav nav-pills nav-justified">
-            <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
-            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
-            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-            <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#emi">EMI</a></li>
-        </ul>
+<div class="container">
+    <div class="header">Multiple Calculators</div>
 
-        <div class="tab-content pt-4">
-            <div id="age" class="tab-pane fade show active">
-                <h2 class="text-center text-primary">Age Calculator</h2>
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob">
-                <button class="btn-calculate mt-3" onclick="calculateAge()">Calculate</button>
-                <div class="result" id="ageResult"></div>
-            </div>
+    <ul class="nav nav-pills nav-justified">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#mic">MIC</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#emi">EMI</a></li>
+    </ul>
 
-            <div id="bmi" class="tab-pane fade">
-                <h2 class="text-center text-primary">BMI Calculator</h2>
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight">
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height">
-                <button class="btn-calculate mt-3" onclick="calculateBMI()">Calculate</button>
-                <div class="result" id="bmiResult"></div>
-            </div>
+    <div class="tab-content pt-4">
+        <!-- Age Calculator -->
+        <div id="age" class="tab-pane fade show active">
+            <h2>Age Calculator</h2>
+            <input type="date" id="dob">
+            <button class="btn-calculate" onclick="calculateAge()">Calculate</button>
+            <div class="result" id="ageResult"></div>
+        </div>
 
-            <div id="interest" class="tab-pane fade">
-                <h2 class="text-center text-primary">Interest Calculator</h2>
-                <label for="principal">Principal (₹):</label>
-                <input type="number" id="principal">
-                <label for="rate">Annual Rate (%):</label>
-                <input type="number" id="rate">
-                <label for="time">Time (years):</label>
-                <input type="number" id="time">
-                <button class="btn-calculate mt-3" onclick="calculateInterest()">Calculate</button>
-                <div class="result" id="interestResult"></div>
-            </div>
+        <!-- Monthly Interest Calculator -->
+        <div id="mic" class="tab-pane fade">
+            <h2>Monthly Interest Calculator</h2>
+            <input type="number" id="principalMic" placeholder="Enter Principal Amount">
+            <input type="number" id="rateMic" placeholder="Enter Monthly Interest Rate">
+            <input type="date" id="fromDate">
+            <input type="date" id="toDate">
+            <button class="btn-calculate" onclick="calculateMonthlyInterest()">Calculate</button>
+            <div class="result" id="micResult"></div>
+        </div>
 
-            <div id="emi" class="tab-pane fade">
-                <h2 class="text-center text-primary">EMI Calculator</h2>
-                <label for="loanAmount">Loan Amount (₹):</label>
-                <input type="number" id="loanAmount">
-                <label for="loanRate">Rate of Interest (%):</label>
-                <input type="number" id="loanRate">
-                <label for="loanTenure">Tenure (months):</label>
-                <input type="number" id="loanTenure">
-                <button class="btn-calculate mt-3" onclick="calculateEMI()">Calculate</button>
-                <div class="result" id="emiResult"></div>
-            </div>
+        <!-- BMI Calculator -->
+        <div id="bmi" class="tab-pane fade">
+            <h2>BMI Calculator</h2>
+            <input type="number" id="weight" placeholder="Enter Weight (kg)">
+            <input type="number" id="height" placeholder="Enter Height (cm)">
+            <button class="btn-calculate" onclick="calculateBMI()">Calculate</button>
+            <div class="result" id="bmiResult"></div>
+        </div>
+
+        <!-- Interest Calculator -->
+        <div id="interest" class="tab-pane fade">
+            <h2>Interest Calculator</h2>
+            <input type="number" id="principalInt" placeholder="Enter Principal Amount">
+            <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate">
+            <input type="number" id="years" placeholder="Years">
+            <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
+            <div class="result" id="interestResult"></div>
+        </div>
+
+        <!-- EMI Calculator -->
+        <div id="emi" class="tab-pane fade">
+            <h2>EMI Calculator</h2>
+            <input type="number" id="loanAmount" placeholder="Enter Loan Amount">
+            <input type="number" id="loanRate" placeholder="Enter Interest Rate">
+            <input type="number" id="loanTenure" placeholder="Enter Tenure (Months)">
+            <button class="btn-calculate" onclick="calculateEMI()">Calculate</button>
+            <div class="result" id="emiResult"></div>
         </div>
     </div>
+</div>
 
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="footer">© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="calculators.js"></script>
+
 </body>
 </html>

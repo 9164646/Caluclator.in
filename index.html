@@ -21,17 +21,18 @@
         }
         .container {
             max-width: 500px;
-            margin: 20px auto;
+            margin: 40px auto;
             background: #ffffff;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             padding: 30px;
             animation: fadeIn 0.8s ease;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #007bff;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         /* Tabs */
         .nav-pills .nav-link {
@@ -58,21 +59,23 @@
             background: #007bff;
             border: none;
             border-radius: 30px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
         }
         .btn-primary:hover {
             background: #0056b3;
+            transform: scale(1.05);
         }
         /* Result Box */
         .result {
             background: #e9ecef;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
             margin-top: 15px;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #007bff;
             animation: slideIn 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         /* Animations */
         @keyframes fadeIn {
@@ -101,7 +104,7 @@
     <div class="tab-content pt-4">
         <!-- Age Calculator -->
         <div id="age" class="tab-pane fade show active">
-            <h2 class="text-center">Age Calculator</h2>
+            <h2>Age Calculator</h2>
             <input type="date" id="dob" class="form-control mb-3">
             <button class="btn btn-primary w-100" onclick="calculateAge()">Calculate</button>
             <div id="ageResult" class="result mt-3"></div>
@@ -109,7 +112,7 @@
 
         <!-- BMI Calculator -->
         <div id="bmi" class="tab-pane fade">
-            <h2 class="text-center">BMI Calculator</h2>
+            <h2>BMI Calculator</h2>
             <input type="number" id="weight" class="form-control mb-2" placeholder="Weight (kg)">
             <input type="number" id="height" class="form-control mb-3" placeholder="Height (cm)">
             <button class="btn btn-primary w-100" onclick="calculateBMI()">Calculate</button>
@@ -118,7 +121,7 @@
 
         <!-- Interest Calculator -->
         <div id="interest" class="tab-pane fade">
-            <h2 class="text-center">Interest Calculator</h2>
+            <h2>Interest Calculator</h2>
             <input type="number" id="principal" class="form-control mb-2" placeholder="Principal Amount">
             <input type="number" id="rate" class="form-control mb-2" placeholder="Rate of Interest (%)">
             <input type="number" id="time" class="form-control mb-3" placeholder="Time (Years)">
@@ -129,7 +132,7 @@
 </div>
 
 <script>
-    // Age Calculator with Years, Months, and Days
+    // Age Calculator
     function calculateAge() {
         const dob = new Date(document.getElementById("dob").value);
         const today = new Date();
@@ -147,7 +150,9 @@
             months += 12;
         }
         
-        document.getElementById("ageResult").innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
+        document.getElementById("ageResult").innerHTML = `
+            <strong>${years}</strong> Years, <strong>${months}</strong> Months, and <strong>${days}</strong> Days Old.
+        `;
     }
 
     // BMI Calculator

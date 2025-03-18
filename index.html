@@ -8,23 +8,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
+            background: #f0f8ff;
             color: #333;
+            margin: 0;
+            padding: 20px;
         }
         .container {
             max-width: 500px;
-            margin-top: 50px;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            animation: fadeIn 0.8s ease;
         }
-        h1, h2 {
+        h1 {
             text-align: center;
             color: #007bff;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
+        /* Tabs */
+        .nav-pills .nav-link {
+            color: #007bff;
+            border: 1px solid #007bff;
+            margin: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        /* Input and Button */
         .form-control {
             border: 2px solid #007bff;
-            transition: 0.3s;
+            transition: box-shadow 0.3s;
         }
         .form-control:focus {
             box-shadow: 0 0 10px #007bff;
@@ -38,6 +58,7 @@
         .btn-primary:hover {
             background: #0056b3;
         }
+        /* Result Box */
         .result {
             background: #e9ecef;
             padding: 10px;
@@ -46,9 +67,16 @@
             text-align: center;
             font-size: 1.2rem;
             color: #007bff;
+            animation: slideIn 0.5s ease;
         }
-        .tab-content {
-            padding-top: 20px;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -57,7 +85,7 @@
 <div class="container">
     <h1>Multiple Calculators</h1>
 
-    <!-- Tabs Navigation -->
+    <!-- Navigation Tabs -->
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
@@ -66,90 +94,85 @@
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#monthlyInterest">Monthly Interest</a></li>
     </ul>
 
-    <div class="tab-content">
+    <!-- Tab Content -->
+    <div class="tab-content pt-3">
         <!-- Age Calculator -->
         <div id="age" class="tab-pane fade show active">
-            <h2>Age Calculator</h2>
-            <input type="date" id="dob" class="form-control" placeholder="Enter your Date of Birth">
-            <button class="btn btn-primary w-100 mt-3" onclick="calculateAge()">Calculate</button>
-            <div id="ageResult" class="result"></div>
+            <h2 class="text-center">Age Calculator</h2>
+            <input type="date" id="dob" class="form-control mb-3" placeholder="Enter your Date of Birth">
+            <button class="btn btn-primary w-100" onclick="calculateAge()">Calculate</button>
+            <div id="ageResult" class="result mt-3"></div>
         </div>
 
         <!-- BMI Calculator -->
         <div id="bmi" class="tab-pane fade">
-            <h2>BMI Calculator</h2>
-            <input type="number" id="weight" class="form-control" placeholder="Weight (kg)">
-            <input type="number" id="height" class="form-control mt-2" placeholder="Height (cm)">
-            <button class="btn btn-primary w-100 mt-3" onclick="calculateBMI()">Calculate</button>
-            <div id="bmiResult" class="result"></div>
+            <h2 class="text-center">BMI Calculator</h2>
+            <input type="number" id="weight" class="form-control mb-2" placeholder="Weight (kg)">
+            <input type="number" id="height" class="form-control mb-3" placeholder="Height (cm)">
+            <button class="btn btn-primary w-100" onclick="calculateBMI()">Calculate</button>
+            <div id="bmiResult" class="result mt-3"></div>
         </div>
 
         <!-- IBM Calculator -->
         <div id="ibm" class="tab-pane fade">
-            <h2>IBM Calculator</h2>
-            <input type="number" id="ibmInput" class="form-control" placeholder="Enter value">
-            <button class="btn btn-primary w-100 mt-3" onclick="calculateIBM()">Calculate</button>
-            <div id="ibmResult" class="result"></div>
+            <h2 class="text-center">IBM Calculator</h2>
+            <input type="number" id="ibmInput" class="form-control mb-3" placeholder="Enter value">
+            <button class="btn btn-primary w-100" onclick="calculateIBM()">Calculate</button>
+            <div id="ibmResult" class="result mt-3"></div>
         </div>
 
         <!-- Interest Calculator -->
         <div id="interest" class="tab-pane fade">
-            <h2>Interest Calculator</h2>
-            <input type="number" id="principal" class="form-control" placeholder="Principal Amount">
-            <input type="number" id="rate" class="form-control mt-2" placeholder="Rate of Interest (%)">
-            <input type="number" id="time" class="form-control mt-2" placeholder="Time (Years)">
-            <button class="btn btn-primary w-100 mt-3" onclick="calculateInterest()">Calculate</button>
-            <div id="interestResult" class="result"></div>
+            <h2 class="text-center">Interest Calculator</h2>
+            <input type="number" id="principal" class="form-control mb-2" placeholder="Principal Amount">
+            <input type="number" id="rate" class="form-control mb-2" placeholder="Rate of Interest (%)">
+            <input type="number" id="time" class="form-control mb-3" placeholder="Time (Years)">
+            <button class="btn btn-primary w-100" onclick="calculateInterest()">Calculate</button>
+            <div id="interestResult" class="result mt-3"></div>
         </div>
 
         <!-- Monthly Interest Calculator -->
         <div id="monthlyInterest" class="tab-pane fade">
-            <h2>Monthly Interest Calculator</h2>
-            <input type="number" id="monthlyPrincipal" class="form-control" placeholder="Principal Amount">
-            <input type="number" id="monthlyRate" class="form-control mt-2" placeholder="Monthly Interest Rate (%)">
-            <button class="btn btn-primary w-100 mt-3" onclick="calculateMonthlyInterest()">Calculate</button>
-            <div id="monthlyInterestResult" class="result"></div>
+            <h2 class="text-center">Monthly Interest</h2>
+            <input type="number" id="monthlyPrincipal" class="form-control mb-2" placeholder="Principal Amount">
+            <input type="number" id="monthlyRate" class="form-control mb-3" placeholder="Monthly Interest Rate (%)">
+            <button class="btn btn-primary w-100" onclick="calculateMonthlyInterest()">Calculate</button>
+            <div id="monthlyInterestResult" class="result mt-3"></div>
         </div>
     </div>
 </div>
 
 <script>
-    function calculateAge() {
+    const calculateAge = () => {
         const dob = new Date(document.getElementById("dob").value);
-        const diff = Date.now() - dob.getTime();
-        const age = new Date(diff).getUTCFullYear() - 1970;
+        const age = new Date(Date.now() - dob.getTime()).getUTCFullYear() - 1970;
         document.getElementById("ageResult").innerText = `Your Age: ${age} years`;
-    }
+    };
 
-    function calculateBMI() {
+    const calculateBMI = () => {
         const weight = parseFloat(document.getElementById("weight").value);
         const height = parseFloat(document.getElementById("height").value) / 100;
         const bmi = (weight / (height * height)).toFixed(2);
         document.getElementById("bmiResult").innerText = `Your BMI: ${bmi}`;
-    }
+    };
 
-    function calculateIBM() {
+    const calculateIBM = () => {
         const value = parseFloat(document.getElementById("ibmInput").value);
-        const ibm = (value * 1.2).toFixed(2);
-        document.getElementById("ibmResult").innerText = `IBM: ${ibm}`;
-    }
+        document.getElementById("ibmResult").innerText = `IBM: ${value * 1.2}`;
+    };
 
-    function calculateInterest() {
+    const calculateInterest = () => {
         const principal = parseFloat(document.getElementById("principal").value);
         const rate = parseFloat(document.getElementById("rate").value);
         const time = parseFloat(document.getElementById("time").value);
-        const interest = (principal * rate * time / 100).toFixed(2);
-        document.getElementById("interestResult").innerText = `Interest: $${interest}`;
-    }
+        document.getElementById("interestResult").innerText = `Interest: ${(principal * rate * time / 100).toFixed(2)}`;
+    };
 
-    function calculateMonthlyInterest() {
+    const calculateMonthlyInterest = () => {
         const principal = parseFloat(document.getElementById("monthlyPrincipal").value);
         const rate = parseFloat(document.getElementById("monthlyRate").value) / 100;
-        const interest = (principal * rate).toFixed(2);
-        document.getElementById("monthlyInterestResult").innerText = `Monthly Interest: $${interest}`;
-    }
+        document.getElementById("monthlyInterestResult").innerText = `Monthly Interest: ${(principal * rate).toFixed(2)}`;
+    };
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

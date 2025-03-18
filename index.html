@@ -14,11 +14,12 @@
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f0f8ff;
+            background: #f0f0f0;
             color: #333;
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 500px;
             margin: 40px auto;
@@ -28,56 +29,64 @@
             padding: 30px;
             animation: fadeIn 0.8s ease;
         }
-        /* Bordered Header */
+
+        /* RGB Gradient Borders */
         .header {
             text-align: center;
             padding: 10px;
             border: 3px solid;
-            border-image: linear-gradient(90deg, #007bff, #00d4ff) 1;
+            border-image: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255), rgb(0, 255, 128)) 1;
             border-radius: 15px;
             margin-bottom: 20px;
         }
+
         h1 {
-            background: linear-gradient(90deg, #007bff, #00d4ff);
+            background: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255), rgb(0, 255, 128));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
             margin: 0;
         }
+
         /* Tabs */
         .nav-pills .nav-link {
-            color: #007bff;
-            border: 1px solid #007bff;
+            color: #fff;
+            background: linear-gradient(90deg, rgb(0, 204, 255), rgb(0, 255, 128));
+            border: 1px solid rgb(0, 204, 255);
             margin: 5px;
             border-radius: 30px;
             transition: 0.3s;
-            background: linear-gradient(90deg, #007bff, #00d4ff);
-            color: white;
         }
+
         .nav-pills .nav-link.active {
-            background: linear-gradient(90deg, #00d4ff, #007bff);
-            color: white;
+            background: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255));
+            color: #fff;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
+
         /* Input and Button */
         .form-control {
-            border: 2px solid #007bff;
+            border: 2px solid rgb(0, 204, 255);
             transition: box-shadow 0.3s;
         }
+
         .form-control:focus {
-            box-shadow: 0 0 10px #007bff;
-            border-color: #007bff;
+            box-shadow: 0 0 10px rgb(0, 204, 255);
+            border-color: rgb(0, 204, 255);
         }
+
         .btn-primary {
-            background: linear-gradient(90deg, #007bff, #00d4ff);
+            background: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255));
             border: none;
             border-radius: 30px;
             transition: background 0.3s, transform 0.2s;
         }
+
         .btn-primary:hover {
-            background: linear-gradient(90deg, #00d4ff, #007bff);
+            background: linear-gradient(90deg, rgb(0, 204, 255), rgb(255, 0, 150));
             transform: scale(1.05);
         }
+
         /* Result Box */
         .result {
             background: #e9ecef;
@@ -86,15 +95,17 @@
             margin-top: 15px;
             text-align: center;
             font-size: 1.1rem;
-            color: #007bff;
+            color: rgb(255, 0, 150);
             animation: slideIn 0.5s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -112,7 +123,6 @@
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
     </ul>
 
     <!-- Tab Content -->
@@ -132,16 +142,6 @@
             <input type="number" id="height" class="form-control mb-3" placeholder="Height (cm)">
             <button class="btn btn-primary w-100" onclick="calculateBMI()">Calculate</button>
             <div id="bmiResult" class="result mt-3"></div>
-        </div>
-
-        <!-- Interest Calculator -->
-        <div id="interest" class="tab-pane fade">
-            <h2 class="text-center">Interest Calculator</h2>
-            <input type="number" id="principal" class="form-control mb-2" placeholder="Principal Amount">
-            <input type="number" id="rate" class="form-control mb-2" placeholder="Rate of Interest (%)">
-            <input type="number" id="time" class="form-control mb-3" placeholder="Time (Years)">
-            <button class="btn btn-primary w-100" onclick="calculateInterest()">Calculate</button>
-            <div id="interestResult" class="result mt-3"></div>
         </div>
     </div>
 </div>
@@ -176,15 +176,6 @@
         const height = parseFloat(document.getElementById("height").value) / 100;
         const bmi = (weight / (height * height)).toFixed(2);
         document.getElementById("bmiResult").innerText = `Your BMI: ${bmi}`;
-    }
-
-    // Interest Calculator
-    function calculateInterest() {
-        const principal = parseFloat(document.getElementById("principal").value);
-        const rate = parseFloat(document.getElementById("rate").value);
-        const time = parseFloat(document.getElementById("time").value);
-        const interest = (principal * rate * time / 100).toFixed(2);
-        document.getElementById("interestResult").innerText = `Interest: $${interest}`;
     }
 </script>
 

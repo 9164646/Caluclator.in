@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
             background: #f0f0f0;
@@ -30,25 +29,25 @@
             animation: fadeIn 0.8s ease;
         }
 
-        /* RGB Gradient Borders */
+        /* Animated Gradient Header */
         .header {
             text-align: center;
             padding: 10px;
-            border: 3px solid;
-            border-image: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255), rgb(0, 255, 128)) 1;
             border-radius: 15px;
             margin-bottom: 20px;
+            border: 3px solid;
+            background: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255), rgb(0, 255, 128));
+            background-size: 300% 300%;
+            animation: gradientMove 3s infinite;
         }
 
         h1 {
-            background: linear-gradient(90deg, rgb(255, 0, 150), rgb(0, 204, 255), rgb(0, 255, 128));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
             font-weight: 700;
             margin: 0;
         }
 
-        /* Tabs */
+        /* Animated Tabs */
         .nav-pills .nav-link {
             color: #fff;
             background: linear-gradient(90deg, rgb(0, 204, 255), rgb(0, 255, 128));
@@ -64,14 +63,14 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Input and Button */
+        /* Input and Button Glow Effect */
         .form-control {
             border: 2px solid rgb(0, 204, 255);
             transition: box-shadow 0.3s;
         }
 
         .form-control:focus {
-            box-shadow: 0 0 10px rgb(0, 204, 255);
+            box-shadow: 0 0 15px rgb(0, 204, 255);
             border-color: rgb(0, 204, 255);
         }
 
@@ -109,6 +108,12 @@
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>

@@ -119,22 +119,15 @@
 
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-        
-
-
-
-
-        
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">MIC</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">BMI</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Intrest Caluclator</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">EMI</a></li>
     </ul>
 
     <div class="tab-content pt-4">
         <!-- Age Calculator -->
-    <div class="section" id=age>
+    <div id="age"class="tab-pane fade show active">
     <h2>Age Calculator</h2>
     <div class="input-group">
         <label for="dob">Date of Birth:</label>
@@ -145,7 +138,7 @@
 </div>
 
       <!-- Monthly Intrest Calculator -->
-    <div class="section" id=MIC>   
+    <div id="MIC" class="tab-pane fade">  
     <h2>Monthly Interest Calculator</h2>
     
     <div class="input-group">
@@ -172,12 +165,8 @@
     <div class="result" id="result"></div>
 </div>
       
-
-
-
-
     <!-- BMI Calculator -->
-    <div class="section" id="bmi">
+    <div id="BMI" class="tab-pane fade"> 
         <h2>BMI Calculator</h2>
         <div class="input-group">
             <label for="weight">Weight (kg):</label>
@@ -195,7 +184,7 @@
     <div class="section" id="interest">
        
     <h2>Interest Calculator</h2>
-    <div class="input-group">
+    <div id="Intrest calculator" class="tab-pane fade"> 
         <label for="principal">Principal Amount (₹):</label>
         <input type="number" id="principal" placeholder="Enter Principal Amount">
     </div>
@@ -217,7 +206,7 @@
 </div>
 
     <!-- EMI Calculator -->
-    <div class="section" id="emi">
+    <div id="EMI" class="tab-pane fade"> 
           <h2>EMI Calculator</h2>
 
     <div class="input-group">
@@ -237,22 +226,17 @@
 
     <button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
     <div class="result" id="emiResult"></div>
+       </div>
+    </div>
 </div>
+    
    <!-- Footer -->
-
 <div class="footer">
-
-    <p>© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</p>
-       
+    <p>© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</p>     
 </div>
 
 <script>
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.style.display = 'none');
-        document.getElementById(sectionId).style.display = 'block';
-    }
-
+    
     function calculateAge() {
         const dob = new Date(document.getElementById('dob').value);
         const today = new Date();
@@ -317,8 +301,6 @@
         Total Amount: ₹${totalAmount.toFixed(2)}
     `;
 }
-
-
 
     function calculateBMI() {
         const weight = parseFloat(document.getElementById('weight').value);

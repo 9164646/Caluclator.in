@@ -12,15 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f4f6f9;
-            color: #333;
+            background: #f0f4f8;
             margin: 0;
             padding: 20px;
         }
 
-        
         .container {
             max-width: 500px;
             margin: 40px auto;
@@ -29,20 +28,20 @@
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.8s ease;
         }
 
         .header {
             text-align: center;
             padding: 15px;
-            border-radius: 15px;
+            color: #ffffff;
+            background: #007bff;
+            border-radius: 10px;
             margin-bottom: 20px;
-            border: 2px solid #007bff;
-            color: #007bff;
+            font-size: 1.5rem;
             font-weight: 600;
-            background: #e9f2ff;
         }
 
+        /* Tabs */
         .nav-pills .nav-link {
             color: #007bff;
             border: 2px solid #007bff;
@@ -57,6 +56,7 @@
             color: #fff;
         }
 
+        /* Buttons */
         .btn-calculate {
             background: #007bff;
             color: white;
@@ -72,6 +72,20 @@
             transform: scale(1.05);
         }
 
+        /* Inputs */
+        input[type="number"], input[type="date"] {
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 8px 10px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus, input[type="date"]:focus {
+            border-color: #0056b3;
+        }
+
+        /* Results */
         .result {
             background: #e9f2ff;
             padding: 15px;
@@ -81,6 +95,7 @@
             text-align: center;
             font-size: 1.1rem;
             color: #0056b3;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -100,7 +115,7 @@
 
 <div class="container">
     <div class="header">
-        <h1>Multiple Calculators</h1>
+        Multiple Calculators
     </div>
 
     <ul class="nav nav-pills nav-justified">

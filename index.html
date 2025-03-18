@@ -149,18 +149,14 @@
         </div>
 
         <!-- Interest Calculator -->
-        <div id="Intrest Calculator" class="tab-pane fade">
-          <h2>Intrest Calculator</h2>
-    <input type="number" id="principalInt" placeholder="Enter Principal Amount">
-    <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate (%)">
-    <label for="fromDateInt" class="form-label">From Date:</label>
-    <input type="date" id="fromDateInt">
-    <label for="toDateInt" class="form-label">To Date:</label>
-    <input type="date" id="toDateInt">
-
-    <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
-    <div class="result" id="interestResult"></div>
-    </div>
+        <div id="interest" class="tab-pane fade">
+            <h2>Interest Calculator</h2>
+            <input type="number" id="principalInt" placeholder="Enter Principal Amount">
+            <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate">
+            <input type="number" id="years" placeholder="Years">
+            <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
+            <div class="result" id="interestResult"></div>
+        </div>
 
         <!-- EMI Calculator -->
         <div id="emi" class="tab-pane fade">

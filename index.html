@@ -148,15 +148,19 @@
             <div class="result" id="bmiResult"></div>
         </div>
 
+    
         <!-- Interest Calculator -->
         <div id="interest" class="tab-pane fade">
             <h2>Interest Calculator</h2>
             <input type="number" id="principalInt" placeholder="Enter Principal Amount">
             <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate">
             <input type="number" id="years" placeholder="Years">
+            <input type="number" id="months" placeholder="Months">
+            <input type="number" id="days" placeholder="Days">
             <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
             <div class="result" id="interestResult"></div>
         </div>
+ 
 
         <!-- EMI Calculator -->
         <div id="emi" class="tab-pane fade">
@@ -267,38 +271,32 @@ function calculateBMI() {
 
 
 
-// Interest Calculator with Time Period
+// Intrest Caluclator
 function calculateInterest() {
     let principal = parseFloat(document.getElementById("principalInt").value);
     let rate = parseFloat(document.getElementById("rateInt").value);
-    let fromDate = new Date(document.getElementById("fromDateInt").value);
-    let toDate = new Date(document.getElementById("toDateInt").value);
+    let years = parseFloat(document.getElementById("years").value) || 0;
+    let months = parseFloat(document.getElementById("months").value) || 0;
+    let days = parseFloat(document.getElementById("days").value) || 0;
 
-    if (isNaN(principal) || isNaN(rate) || fromDate == "Invalid Date" || toDate == "Invalid Date" || toDate <= fromDate) {
+    if (isNaN(principal) || isNaN(rate) || (years === 0 && months === 0 && days === 0)) {
         document.getElementById("interestResult").innerText = "Please enter valid values.";
         return;
     }
 
-    // Calculate time period
-    let totalDays = Math.floor((toDate - fromDate) / (1000 * 60 * 60 * 24));
-    let years = Math.floor(totalDays / 365);
-    let remainingDays = totalDays % 365;
-    let months = Math.floor(remainingDays / 30);
-    let days = remainingDays % 30;
+    // Calculate total time in years (considering months and days)
+    let totalYears = years + (months / 12) + (days / 365);
 
-    // Calculate Interest
-    let interest = (principal * rate * totalDays) / (100 * 365);
+    // Calculate interest and total amount
+    let interest = (principal * rate * totalYears) / 100;
     let totalAmount = principal + interest;
 
-    // Display Results
     document.getElementById("interestResult").innerHTML = `
-        <strong>Principal:</strong> ₹${principal.toFixed(2)}<br>
-        <strong>Interest:</strong> ₹${interest.toFixed(2)}<br>
-        <strong>Total Amount:</strong> ₹${totalAmount.toFixed(2)}<br>
-        <strong>Time Period:</strong> ${years} Years, ${months} Months, ${days} Days
+        Principal: ₹${principal.toFixed(2)}<br>
+        Interest: ₹${interest.toFixed(2)}<br>
+        Total Amount: ₹${totalAmount.toFixed(2)}
     `;
 }
-
 
 
 // EMI Calculator

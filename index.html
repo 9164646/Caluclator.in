@@ -149,14 +149,18 @@
         </div>
 
         <!-- Interest Calculator -->
-        <div id="interest" class="tab-pane fade">
-            <h2>Interest Calculator</h2>
-            <input type="number" id="principalInt" placeholder="Enter Principal Amount">
-            <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate">
-            <input type="number" id="years" placeholder="Years">
-            <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
-            <div class="result" id="interestResult"></div>
-        </div>
+        <div class="header">Interest Calculator</div>
+
+    <input type="number" id="principalInt" placeholder="Enter Principal Amount">
+    <input type="number" id="rateInt" placeholder="Enter Annual Interest Rate (%)">
+    <label for="fromDateInt" class="form-label">From Date:</label>
+    <input type="date" id="fromDateInt">
+    <label for="toDateInt" class="form-label">To Date:</label>
+    <input type="date" id="toDateInt">
+
+    <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
+    <div class="result" id="interestResult"></div>
+    </div>
 
         <!-- EMI Calculator -->
         <div id="emi" class="tab-pane fade">
@@ -292,12 +296,13 @@ function calculateInterest() {
 
     // Display Results
     document.getElementById("interestResult").innerHTML = `
-        Principal: ₹${principal.toFixed(2)}<br>
-        Interest: ₹${interest.toFixed(2)}<br>
-        Total Amount: ₹${totalAmount.toFixed(2)}<br>
-        Time Period: ${years} Years, ${months} Months, ${days} Days
+        <strong>Principal:</strong> ₹${principal.toFixed(2)}<br>
+        <strong>Interest:</strong> ₹${interest.toFixed(2)}<br>
+        <strong>Total Amount:</strong> ₹${totalAmount.toFixed(2)}<br>
+        <strong>Time Period:</strong> ${years} Years, ${months} Months, ${days} Days
     `;
 }
+
 
 
 // EMI Calculator

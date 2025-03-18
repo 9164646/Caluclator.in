@@ -18,6 +18,9 @@
             color: #333;
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container {
@@ -29,6 +32,7 @@
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             animation: fadeIn 0.8s ease;
+            flex: 1;
         }
 
         /* Header */
@@ -63,17 +67,6 @@
             color: #fff;
         }
 
-        /* Inputs */
-        .form-control {
-            border: 2px solid #007bff;
-            transition: box-shadow 0.3s;
-        }
-
-        .form-control:focus {
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-            border-color: #007bff;
-        }
-
         /* Buttons */
         .btn-calculate {
             background: #007bff;
@@ -101,6 +94,17 @@
             font-size: 1.1rem;
             color: #0056b3;
         }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #fff;
+            background: #007bff;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -114,9 +118,6 @@
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#ibm">IBM</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#emi">EMI</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#monthlyInterest">Monthly Interest</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
     </ul>
 
@@ -149,6 +150,11 @@
             <div id="interestResult" class="result mt-3"></div>
         </div>
     </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    © 2025 Multiple Calculators | Made with ❤️ by Earnova
 </div>
 
 <script>

@@ -171,7 +171,9 @@
 </div>
 
 <div class="footer">© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</div>
-// Age Calculator
+
+    <script>
+    // Age Calculator
 function calculateAge() {
     let dob = document.getElementById("dob").value;
     if (!dob) {
@@ -187,7 +189,7 @@ function calculateAge() {
     }
     document.getElementById("ageResult").innerText = `You are ${age} years old.`;
 }
-<script>
+
 // Monthly Interest Calculator
 function calculateMonthlyInterest() {
     let principal = parseFloat(document.getElementById("principalMic").value);

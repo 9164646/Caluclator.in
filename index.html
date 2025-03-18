@@ -267,22 +267,38 @@ function calculateBMI() {
 
 
 
-// Interest Calculator
+// Interest Calculator with Time Period
 function calculateInterest() {
     let principal = parseFloat(document.getElementById("principalInt").value);
     let rate = parseFloat(document.getElementById("rateInt").value);
-    let years = parseFloat(document.getElementById("years").value);
+    let fromDate = new Date(document.getElementById("fromDateInt").value);
+    let toDate = new Date(document.getElementById("toDateInt").value);
 
-    if (isNaN(principal) || isNaN(rate) || isNaN(years) || years <= 0) {
+    if (isNaN(principal) || isNaN(rate) || fromDate == "Invalid Date" || toDate == "Invalid Date" || toDate <= fromDate) {
         document.getElementById("interestResult").innerText = "Please enter valid values.";
         return;
     }
 
-    let interest = (principal * rate * years) / 100;
+    // Calculate time period
+    let totalDays = Math.floor((toDate - fromDate) / (1000 * 60 * 60 * 24));
+    let years = Math.floor(totalDays / 365);
+    let remainingDays = totalDays % 365;
+    let months = Math.floor(remainingDays / 30);
+    let days = remainingDays % 30;
+
+    // Calculate Interest
+    let interest = (principal * rate * totalDays) / (100 * 365);
     let totalAmount = principal + interest;
 
-    document.getElementById("interestResult").innerHTML = `Principal: ₹${principal.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
+    // Display Results
+    document.getElementById("interestResult").innerHTML = `
+        Principal: ₹${principal.toFixed(2)}<br>
+        Interest: ₹${interest.toFixed(2)}<br>
+        Total Amount: ₹${totalAmount.toFixed(2)}<br>
+        Time Period: ${years} Years, ${months} Months, ${days} Days
+    `;
 }
+
 
 // EMI Calculator
 function calculateEMI() {

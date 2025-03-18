@@ -295,11 +295,18 @@ function calculateEMI() {
         return;
     }
 
+    // Calculate EMI
     let emi = (loanAmount * interestRate * Math.pow(1 + interestRate, tenure)) / (Math.pow(1 + interestRate, tenure) - 1);
     let totalAmount = emi * tenure;
-    let interest = totalAmount - loanAmount;
+    let totalInterest = totalAmount - loanAmount;
 
-    document.getElementById("emiResult").innerHTML = `Principal: ₹${loanAmount.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
+    // Display Results
+    document.getElementById("emiResult").innerHTML = `
+        Monthly EMI: ₹${emi.toFixed(2)}<br>
+        Principal: ₹${loanAmount.toFixed(2)}<br>
+        Total Interest: ₹${totalInterest.toFixed(2)}<br>
+        Total Amount: ₹${totalAmount.toFixed(2)}
+    `;
 }
 
 </script>

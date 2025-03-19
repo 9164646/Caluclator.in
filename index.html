@@ -108,18 +108,9 @@
 
 <body>
 
-    <div class="container">
-    <div class="header">
-        Multiple Calculators
-        <span class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</span>
-    </div>
+    <!-- Dark Mode Toggle Button -->
+<span class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</span>
 
-    <ul class="nav nav-pills nav-justified">
-        <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#bmi">BMI</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#interest">Interest</a></li>
-        <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#emi">EMI</a></li>
-    </ul>
 
 <div class="container">
     <div class="header">Multiple Calculators</div>
@@ -204,8 +195,7 @@
                 result.innerText = '';
             });
         });
-    });
-
+    }); 
         
     // Age Calculator
         function calculateAge() {
@@ -240,7 +230,7 @@
 }
 
 
-// Monthly Interest Calculator
+// Monthly InterestCalculator
 function calculateMonthlyInterest() {
     let principal = parseFloat(document.getElementById("principalMic").value);
     let rate = parseFloat(document.getElementById("rateMic").value);

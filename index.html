@@ -248,8 +248,8 @@ window.onload = function () {
     }
 };
 
-
-    // Auto Clear Results When Switching Tabs
+  
+ // Auto Clear Results When Switching Tabs
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         document.querySelectorAll('.result').forEach(result => {
@@ -259,9 +259,8 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-  
-    // Age Calculator
-        function calculateAge() {
+// Age Calculator (Moved outside the event listener)
+function calculateAge() {
     let dob = document.getElementById("dob").value;
     if (!dob) {
         document.getElementById("ageResult").innerText = "Please enter a valid date.";
@@ -291,6 +290,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
     document.getElementById("ageResult").innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
 }
+
 
 
 // Monthly InterestCalculator

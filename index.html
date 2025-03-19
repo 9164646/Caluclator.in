@@ -11,6 +11,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+
+        
+    .dark-mode {
+        background: #121212;
+        color: #ffffff;
+    }
+
+    .dark-mode .container {
+        background: #1e1e1e;
+        border: 1px solid #007bff;
+        color: #ffffff;
+    }
+
+    .dark-mode input {
+        background: #2c2c2c;
+        color: #ffffff;
+        border-color: #007bff;
+    }
+
+    .dark-mode .btn-calculate {
+        background: #007bff;
+        color: #ffffff;
+    }
+
+    .dark-mode .result {
+        background: #2c2c2c;
+        border-color: #007bff;
+        color: #ffffff;
+    }
+
+    .dark-mode .footer {
+        background: #1e1e1e;
+    }
+
+
         body {
             font-family: 'Poppins', sans-serif;
             background: #f0f4f8;
@@ -182,10 +217,18 @@
 
     <script>
 
-// Dark Mode Toggle
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
+// Dark Mode Toggle with Local Storage
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+}
+
+// Apply Dark Mode on Page Load
+window.onload = () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
     }
+};
 
     // Auto Clear Results When Switching Tabs
     document.querySelectorAll('.nav-link').forEach(link => {

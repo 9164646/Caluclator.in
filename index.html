@@ -177,9 +177,22 @@
 <div class="footer">© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</div>
 
     <script>
-    // Age Calculator
 
-    
+// Auto Restart Function
+    function autoRestart(inputs, resultId) {
+        setTimeout(() => {
+            if (Array.isArray(inputs)) {
+                inputs.forEach(id => (document.getElementById(id).value = ""));
+            } else {
+                document.getElementById(inputs).value = "";
+            }
+            document.getElementById(resultId).innerText = "";
+            document.getElementById(resultId).style.display = "none";
+        }, 5000); // Resets after 5 seconds
+    }
+
+        
+    // Age Calculator
         function calculateAge() {
     let dob = document.getElementById("dob").value;
     if (!dob) {

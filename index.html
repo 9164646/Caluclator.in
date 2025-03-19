@@ -250,12 +250,15 @@ window.onload = function () {
 
 
     // Auto Clear Results When Switching Tabs
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            document.querySelectorAll('.result').forEach(result => {
-                result.style.opacity = '0';
-                result.innerText = '';
-            }
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        document.querySelectorAll('.result').forEach(result => {
+            result.style.opacity = '0';
+            result.innerText = '';
+        });
+    });
+});
+
   
     // Age Calculator
         function calculateAge() {

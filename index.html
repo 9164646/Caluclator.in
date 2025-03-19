@@ -179,33 +179,38 @@
     <script>
     // Age Calculator
 
+    
         function calculateAge() {
-        let dob = document.getElementById("dob").value;
-        if (!dob) {
-            document.getElementById("ageResult").innerText = "Please enter a valid date.";
-            return;
-        }
-
-        let birthDate = new Date(dob);
-        let today = new Date();
-
-        let years = today.getFullYear() - birthDate.getFullYear();
-        let months = today.getMonth() - birthDate.getMonth();
-        let days = today.getDate() - birthDate.getDate();
-
-        // Adjust months and years if needed
-        if (days < 0) {
-            months--;
-            days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-        }
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        document.getElementById("ageResult").innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
+    let dob = document.getElementById("dob").value;
+    if (!dob) {
+        document.getElementById("ageResult").innerText = "Please enter a valid date.";
+        return;
     }
-   
+
+    let birthDate = new Date(dob);
+    let today = new Date();
+
+    // Calculate the difference in years, months, and days
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    // Adjust if the current month is before the birth month
+    if (months < 0 || (months === 0 && days < 0)) {
+        years--;
+        months += (months < 0) ? 12 : 0;
+    }
+
+    // Adjust days if today's date is before birth date
+    if (days < 0) {
+        let lastMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        days += lastMonth;
+        months--;
+    }
+
+    document.getElementById("ageResult").innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
+}
+
 
 // Monthly Interest Calculator
 function calculateMonthlyInterest() {
@@ -227,27 +232,6 @@ function calculateMonthlyInterest() {
 
     document.getElementById("micResult").innerHTML = `Principal: ₹${principal.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
 }
-        //  Interest Calculator
-function calculateMonthlyInterest() {
-    let principal = parseFloat(document.getElementById("principalMic").value);
-    let rate = parseFloat(document.getElementById("rateMic").value);
-    let fromDate = new Date(document.getElementById("fromDate").value);
-    let toDate = new Date(document.getElementById("toDate").value);
-
-    if (isNaN(principal) || isNaN(rate) || fromDate == "Invalid Date" || toDate == "Invalid Date") {
-        document.getElementById("micResult").innerText = "Please enter valid values.";
-        return;
-    }
-
-    let diffTime = toDate - fromDate;
-    let diffDays = diffTime / (1000 * 3600 * 24);
-    let months = diffDays / 30;
-    let interest = (principal * rate * months) / 100;
-    let totalAmount = principal + interest;
-
-    document.getElementById("micResult").innerHTML = `Principal: ₹${principal.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
-}
-
 // BMI Calculator
 function calculateBMI() {
     let weight = parseFloat(document.getElementById("weight").value);
